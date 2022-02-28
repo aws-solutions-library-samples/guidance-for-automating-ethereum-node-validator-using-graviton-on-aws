@@ -1,0 +1,54 @@
+chains:
+  eth1:
+    client:
+      selected: geth
+      params:
+      - env: ETHSTATS_LABEL
+        value: ""
+      - env: ETHSTATS_LOGIN
+        value: ""
+      - env: GETH_CACHE_SIZE
+        value: "512"
+      - env: GETH_MAX_PEERS
+        value: "25"
+      - env: ETH1_P2P_PORT
+        value: "30303"
+      - env: INFURA_PROJECT_ID
+        value: ""
+      - env: POCKET_PROJECT_ID
+        value: ""
+      - env: HTTP_PROVIDER_URL
+        value: ""
+      - env: WS_PROVIDER_URL
+        value: ""
+  eth2:
+    client:
+      selected: prysm
+      params:
+      - env: CUSTOM_GRAFFITI
+        value: ""
+      - env: ETH2_CHECKPOINT_SYNC_URL
+        value: ""
+      - env: ETH2_MAX_PEERS
+        value: "45"
+      - env: ETH2_P2P_PORT
+        value: "9001"
+      - env: ETH2_RPC_PORT
+        value: "5053"
+metrics:
+  enabled: true
+  settings:
+  - env: ETH2_METRICS_PORT
+    value: "9100"
+  - env: VALIDATOR_METRICS_PORT
+    value: "9101"
+  - env: NODE_METRICS_PORT
+    value: "9102"
+  - env: EXPORTER_METRICS_PORT
+    value: "9103"
+  - env: WATCHTOWER_METRICS_PORT
+    value: "9104"
+  - env: PROMETHEUS_PORT
+    value: "9091"
+  - env: GRAFANA_PORT
+    value: "3100"
