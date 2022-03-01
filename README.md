@@ -86,6 +86,7 @@ DEPENDENCIES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, EVEN
 IF AMAZON HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. THESE LIMITATIONS
 AND DISCLAIMERS APPLY EXCEPT TO THE EXTENT PROHIBITED BY APPLICABLE LAW.
 
-Rocket Pool - https://github.com/rocket-pool/rocketpool
-© Rocket Pool Pty Ltd. - https://rocketpool.net/
-https://github.com/rocket-pool/rocketpool/blob/master/LICENSE
+Rocket Pool - © Rocket Pool Pty Ltd.
+- https://rocketpool.net/
+- https://github.com/rocket-pool/rocketpool
+- https://github.com/rocket-pool/rocketpool/blob/master/LICENSE
