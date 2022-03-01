@@ -5,6 +5,7 @@ import * as path from 'path';
 import { Asset } from 'aws-cdk-lib/aws-s3-assets';
 import { Construct } from 'constructs';
 import { aws_ssm as ssm } from 'aws-cdk-lib';
+import { InitFile } from 'aws-cdk-lib/aws-ec2';
 
 declare const content: any;
 
@@ -121,25 +122,40 @@ export class CdkRocketpoolValidatorStack extends cdk.Stack {
     });
 
     // Create an asset that will be used as part of User Data to run on first load
-    const asset = new Asset(this, 'Asset', { path: path.join(__dirname, '../src/config.sh') });
-    const localPath = ec2Instance.userData.addS3DownloadCommand({
-      bucket: asset.bucket,
-      bucketKey: asset.s3ObjectKey,
+    const config = new Asset(this, 'Config', { path: path.join(__dirname, '../src/config.sh') });
+    const configPath = ec2Instance.userData.addS3DownloadCommand({
+      bucket: config.bucket,
+      bucketKey: config.s3ObjectKey
     });
-
     ec2Instance.userData.addExecuteFileCommand({
-      filePath: localPath,
+      filePath: configPath,
       arguments: '--verbose -y'
     });
-    asset.grantRead(ec2Instance.role);
+    config.grantRead(ec2Instance.role);
 
-  // Run on Prater test network
-    const commands = [`runuser -l  ec2-user -c 'cd /home/ec2-user && sh install.sh -d -n prater'`];
-    ec2Instance.userData.addCommands(...commands);
+    // Install node to run on Prater test network
+    const install = [`runuser -l  ec2-user -c 'cd /home/ec2-user && sh install.sh -d -n prater'`];
+    ec2Instance.userData.addCommands(...install);
+
+    const settings = new Asset(this, 'Settings', { path: path.join(__dirname, '../src/settings.yml') });
+    const settingsPath = ec2Instance.userData.addS3DownloadCommand({
+      bucket: settings.bucket,
+      bucketKey: settings.s3ObjectKey,
+      localFile: "/home/ec2-user/.rocketpool/settings.yml"
+    });
+
+    settings.grantRead(ec2Instance.role);
+    const chown = [`chown ec2-user:ec2-user /home/ec2-user/.rocketpool/settings.yml && chmod 666 /home/ec2-user/.rocketpool/settings.yml`];
+    ec2Instance.userData.addCommands(...chown);
+
+  // ec2Instance.userData.addCommands(...commands2);
+
+  // const commands2 = [`runuser -l  ec2-user -c 'wget https://raw.githubusercontent.com/texanraj/rocketpool/main/settings.yml -O ~/.rocketpool/settings.yml'`];
+
 
    // This location will change once we have the repository approved in aws-samples
-    const commands2 = [`runuser -l  ec2-user -c 'wget https://raw.githubusercontent.com/texanraj/rocketpool/main/settings.yml -O ~/.rocketpool/settings.yml'`];
-    ec2Instance.userData.addCommands(...commands2);
+    // const commands2 = [`runuser -l  ec2-user -c 'wget https://raw.githubusercontent.com/texanraj/rocketpool/main/settings.yml -O ~/.rocketpool/settings.yml'`];
+    // ec2Instance.userData.addCommands(...commands2);
 
     // const commands1 = [`runuser -l  ec2-user -c 'cp ../src/settings.yml ~/.rocketpool/'`];
     // ec2Instance.userData.addCommands(...commands1);
