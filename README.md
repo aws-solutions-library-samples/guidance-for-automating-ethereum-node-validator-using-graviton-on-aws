@@ -17,11 +17,11 @@
 
 - Clone the demo CDK application code
 
-    `git clone https://github.com/aws_samples/<TBD>`
+    `git clone https://github.com/aws-samples/cdk-rocketpool-validator-node`
 
 - Change directory
 
-    `cd <TBD>`
+    `cd cdk-rocketpool-validator-node`
 
 - Install the CDK application
 
