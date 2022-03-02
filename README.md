@@ -89,4 +89,4 @@ AND DISCLAIMERS APPLY EXCEPT TO THE EXTENT PROHIBITED BY APPLICABLE LAW.
 Rocket Pool - © Rocket Pool Pty Ltd.
 - https://rocketpool.net/
 - https://github.com/rocket-pool/rocketpool
-- https://github.com/rocket-pool/rocketpool/blob/master/LICENSE
+- https://github.com/rocket-pool/rocketpool/blob/master/LICENSE (GPL-3.0)
