@@ -49,6 +49,10 @@ You may use AWS Systems Manager Session Manager to create a SSH connection to yo
 # Completing the installation
 - Once you are conected you can run the following command to complete the rest of the installation. 
 
+    `rocketpool service start`
+
+- (Optional) If at any point you want to change your ETH1/ ETH2 clients you can run the following command. The default client for ETH1 is Geth and for ETH2 is Lighthouse.
+
     `rocketpool service config`
 
 - Please refer to the documentation on the rocketpool site at https://docs.rocketpool.net/guides/node/docker.html#configuring-the-smartnode-stack
