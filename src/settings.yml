@@ -23,18 +23,18 @@ chains:
         value: ""
   eth2:
     client:
-      selected: prysm
+      selected: lighthouse
       params:
       - env: CUSTOM_GRAFFITI
         value: ""
       - env: ETH2_CHECKPOINT_SYNC_URL
         value: ""
       - env: ETH2_MAX_PEERS
-        value: "45"
+        value: "50"
       - env: ETH2_P2P_PORT
         value: "9001"
       - env: ETH2_RPC_PORT
-        value: "5053"
+        value: ""
 metrics:
   enabled: true
   settings:
