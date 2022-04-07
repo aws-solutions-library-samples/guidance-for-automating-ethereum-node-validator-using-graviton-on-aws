@@ -134,31 +134,19 @@ export class CdkRocketpoolValidatorStack extends cdk.Stack {
     config.grantRead(ec2Instance.role);
 
     // Install node to run on Prater test network
-    const install = [`runuser -l  ec2-user -c 'cd /home/ec2-user && sh install.sh -d -n prater'`];
+    const install = [`runuser -l  ec2-user -c 'cd /home/ec2-user && sh install.sh -d'`];
     ec2Instance.userData.addCommands(...install);
 
-    const settings = new Asset(this, 'Settings', { path: path.join(__dirname, '../src/settings.yml') });
+    const settings = new Asset(this, 'Settings', { path: path.join(__dirname, '../src/user-settings.yml') });
     const settingsPath = ec2Instance.userData.addS3DownloadCommand({
       bucket: settings.bucket,
       bucketKey: settings.s3ObjectKey,
-      localFile: "/home/ec2-user/.rocketpool/settings.yml"
+      localFile: "/home/ec2-user/.rocketpool/user-settings.yml"
     });
 
     settings.grantRead(ec2Instance.role);
-    const chown = [`chown ec2-user:ec2-user /home/ec2-user/.rocketpool/settings.yml && chmod 666 /home/ec2-user/.rocketpool/settings.yml`];
+    const chown = [`chown ec2-user:ec2-user /home/ec2-user/.rocketpool/user-settings.yml && chmod 666 /home/ec2-user/.rocketpool/user-settings.yml`];
     ec2Instance.userData.addCommands(...chown);
-
-  // ec2Instance.userData.addCommands(...commands2);
-
-  // const commands2 = [`runuser -l  ec2-user -c 'wget https://raw.githubusercontent.com/texanraj/rocketpool/main/settings.yml -O ~/.rocketpool/settings.yml'`];
-
-
-   // This location will change once we have the repository approved in aws-samples
-    // const commands2 = [`runuser -l  ec2-user -c 'wget https://raw.githubusercontent.com/texanraj/rocketpool/main/settings.yml -O ~/.rocketpool/settings.yml'`];
-    // ec2Instance.userData.addCommands(...commands2);
-
-    // const commands1 = [`runuser -l  ec2-user -c 'cp ../src/settings.yml ~/.rocketpool/'`];
-    // ec2Instance.userData.addCommands(...commands1);
 
     // Create outputs for connecting
     new cdk.CfnOutput(this, 'IP Address', { value: ec2Instance.instancePublicIp });
