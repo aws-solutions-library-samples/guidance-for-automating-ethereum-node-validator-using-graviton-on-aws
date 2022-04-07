@@ -111,7 +111,7 @@ root:
   nodeMetricsPort: "9102"
   reconnectDelay: 60s
   rpDir: ~/.rocketpool
-  useFallbackExecutionClient: "true"
+  useFallbackExecutionClient: "false"
   vcMetricsPort: "9101"
   version: v1.3.0
   watchtowerMetricsPort: "9104"
