@@ -1,0 +1,130 @@
+consensusCommon:
+  apiPort: "5052"
+  checkpointSyncUrl: ""
+  doppelgangerDetection: "true"
+  graffiti: AWS
+  openApiPort: "false"
+  p2pPort: "9001"
+executionCommon:
+  httpPort: "8545"
+  openRpcPorts: "false"
+  wsPort: "8546"
+exporter:
+  additionalFlags: ""
+  containerTag: prom/node-exporter:v1.3.1
+  enableRootFs: "false"
+  port: "9103"
+externalExecution:
+  httpUrl: ""
+  wsUrl: ""
+externalLighthouse:
+  additionalVcFlags: ""
+  containerTag: sigp/lighthouse:v2.1.5
+  doppelgangerDetection: "true"
+  graffiti: ""
+  httpUrl: ""
+externalPrysm:
+  additionalVcFlags: ""
+  containerTag: prysmaticlabs/prysm-validator:HEAD-e26cde-debug
+  doppelgangerDetection: "true"
+  graffiti: ""
+  httpUrl: ""
+  jsonRpcUrl: ""
+externalTeku:
+  additionalVcFlags: ""
+  containerTag: consensys/teku:22.3.2
+  graffiti: ""
+  httpUrl: ""
+fallbackExecutionCommon:
+  httpPort: "8545"
+  openRpcPorts: "false"
+  wsPort: "8546"
+fallbackExternalExecution:
+  httpUrl: ""
+  wsUrl: ""
+fallbackInfura:
+  additionalFlags: ""
+  containerTag: rocketpool/smartnode-pow-proxy:v1.3.0
+  projectID: ""
+fallbackPocket:
+  additionalFlags: ""
+  containerTag: rocketpool/smartnode-pow-proxy:v1.3.0
+  gatewayID: lb/6126b4a783e49000343a3a47
+geth:
+  additionalFlags: ""
+  cache: "4096"
+  containerTag: ethereum/client-go:v1.10.17
+  ethstatsLabel: ""
+  ethstatsLogin: ""
+  maxPeers: "25"
+  p2pPort: "30303"
+grafana:
+  containerTag: grafana/grafana:8.3.2
+  port: "3100"
+infura:
+  additionalFlags: ""
+  containerTag: rocketpool/smartnode-pow-proxy:v1.3.0
+  projectID: ""
+lighthouse:
+  additionalBnFlags: ""
+  additionalVcFlags: ""
+  containerTag: sigp/lighthouse:v2.1.5
+  maxPeers: "80"
+native:
+  ccHttpUrl: ""
+  consensusClient: nimbus
+  ecHttpUrl: ""
+  validatorRestartCommand: ~/.rocketpool/restart-vc.sh
+nimbus:
+  additionalFlags: ""
+  containerTag: statusim/nimbus-eth2:multiarch-v22.3.0
+  maxPeers: "100"
+pocket:
+  additionalFlags: ""
+  containerTag: rocketpool/smartnode-pow-proxy:v1.3.0
+  gatewayID: lb/6126b4a783e49000343a3a47
+prometheus:
+  additionalFlags: ""
+  containerTag: prom/prometheus:v2.31.1
+  openPort: "false"
+  port: "9091"
+prysm:
+  additionalBnFlags: ""
+  additionalVcFlags: ""
+  bnContainerTag: prysmaticlabs/prysm-beacon-chain:HEAD-e26cde-debug
+  maxPeers: "45"
+  openRpcPort: "false"
+  rpcPort: "5053"
+  vcContainerTag: prysmaticlabs/prysm-validator:HEAD-e26cde-debug
+root:
+  bnMetricsPort: "9100"
+  consensusClient: nimbus
+  consensusClientMode: local
+  enableMetrics: "true"
+  executionClient: geth
+  executionClientMode: local
+  exporterMetricsPort: "9103"
+  externalConsensusClient: lighthouse
+  fallbackExecutionClient: pocket
+  fallbackExecutionClientMode: external
+  isNative: "false"
+  nodeMetricsPort: "9102"
+  reconnectDelay: 60s
+  rpDir: ~/.rocketpool
+  useFallbackExecutionClient: "true"
+  vcMetricsPort: "9101"
+  version: v1.3.0
+  watchtowerMetricsPort: "9104"
+smartnode:
+  dataPath: ~/.rocketpool/data
+  manualMaxFee: "0"
+  minipoolStakeGasThreshold: "60"
+  network: prater
+  priorityFee: "2"
+  projectName: rocketpool
+  rplClaimGasThreshold: "60"
+teku:
+  additionalBnFlags: ""
+  additionalVcFlags: ""
+  containerTag: consensys/teku:22.3.2
+  maxPeers: "74"
