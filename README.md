@@ -51,7 +51,7 @@ You may use AWS Systems Manager Session Manager to create a SSH connection to yo
 
     `rocketpool service start`
 
-- (Optional) If at any point you want to change your ETH1/ ETH2 clients you can run the following command. The default client for ETH1 is Geth and for ETH2 is Lighthouse.
+- (Optional) If at any point you want to change your ETH1/ ETH2 clients you can run the following command. The default client for ETH1 is Geth and for ETH2 is Nimbus.
 
     `rocketpool service config`
 
